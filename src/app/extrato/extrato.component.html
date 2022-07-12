@@ -1,0 +1,28 @@
+<section class="container">
+  <h2 class="titulo">Transferências</h2>
+<!--criar uma tabela para exibir o resultados das transferencia -->
+<table class="tabela">
+  <thead class="tabela__cabecalho">
+      <th class="tabela__cabecalho__conteudo">Data</th>
+      <th class="tabela__cabecalho__conteudo">Valor</th>
+      <th class="tabela__cabecalho__conteudo">Destino</th>
+
+  </thead>
+  <!--A diretiva *ngIF fuciona semelhante ao que os ifs de outras linguagens de progrmação-->
+  <tbody *ngIf="transferencias?.length > 0; else listaVazia">
+    <!--Recuso do angular para formar datas é a | pipe-->
+    <tr class="tabela__linha" *ngFor="let transferencia of transferencias">
+      <td class="tabela__conteudo">{{transferencia.data | date: "short"}}</td>
+      <td class="tabela__conteudo">{{transferencia.valor | currency}}</td>
+      <td class="tabela__conteudo">{{transferencia.destino}}</td>
+    </tr>
+  </tbody>
+
+</table>
+<!--quando o ngif não for atendido ou seja não tiver conteudo na tabela é pra
+mostrar o ng template -->
+<ng-template #listaVazia>
+  <p>Nenhuma transferência cadastrada</p>
+
+</ng-template>
+</section>
